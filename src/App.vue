@@ -10,21 +10,31 @@ to load more data that is then displayed
 <template>
   <div>
     <h1>Programming Quotes</h1>
+    <quote-comp :quoteDisplay="quote"></quote-comp>
   </div>
 </template>
 
 <script>
+import QuoteComp from './components/QuoteComp.vue';
+
+
 export default {
   name: 'app',
   data() {
     return{
-      quotes: []
+      quote: {}
     };
+  },
+  methods: {
+
   },
   mounted(){
     fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
     .then(res => res.json())
-    .then(quotes => this.quotes = quotes)
+    .then(quote => this.quote = quote)
+  },
+  components: {
+    "quote-comp": QuoteComp
   }
 
 }
