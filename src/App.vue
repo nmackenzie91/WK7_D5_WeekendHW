@@ -1,28 +1,35 @@
+<!-- MVP
+1 The application should display data from an API request.
+2 The application should have a clear separation of concerns (multiple components)
+3 Take input from the user to update the page. You could update the page by filtering 
+or manipulating the data on user interaction, or you might make further API requests 
+to load more data that is then displayed
+-->
+
+
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Programming Quotes</h1>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'app',
+  data() {
+    return{
+      quotes: []
+    };
+  },
+  mounted(){
+    fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
+    .then(res => res.json())
+    .then(quotes => this.quotes = quotes)
   }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
