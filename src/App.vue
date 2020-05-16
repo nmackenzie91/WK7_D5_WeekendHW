@@ -10,12 +10,16 @@ to load more data that is then displayed
 <template>
   <div>
     <h1>Programming Quotes</h1>
-    <quote-comp :quoteDisplay="quote"></quote-comp>
+    <prog-quote-comp :progQuoteDisplay="progQuote"></prog-quote-comp>
+    
+    <h1>Another Quote</h1>
+    <ron-quote-comp :ronQuoteDisplay="ronQuote"></ron-quote-comp>
   </div>
 </template>
 
 <script>
-import QuoteComp from './components/QuoteComp.vue';
+import RonQuoteComp from './components/RonQuoteComp.vue';
+import ProgQuoteComp from './components/ProgQuoteComp.vue';
 import {eventBus} from '@/main.js';
 
 
@@ -23,24 +27,34 @@ export default {
   name: 'app',
   data() {
     return{
-      quote: {}
+      progQuote: {},
+      ronQuote: {}
     };
   },
   methods: {
-    getQuote: function() {
+    getProgQuote: function() {
       fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
       .then(res => res.json())
-      .then(quote => this.quote = quote)
-    }
+      .then(progQuote => this.progQuote = progQuote)
+    },
+
+    getRonQuote: function() {
+      fetch("https://ron-swanson-quotes.herokuapp.com/v2/quotes")
+      .then(res => res.json())
+      .then(ronQuote => this.ronQuote = ronQuote)
+    },
 
   },
   mounted(){
-    this.getQuote();
+    this.getProgQuote();
+    this.getRonQuote();
 
-    eventBus.$on("new-quote", () => this.getQuote())
+    eventBus.$on("new-prog-quote", () => this.getProgQuote());
+    eventBus.$on("new-ron-quote", () => this.getRonQuote());
   },
   components: {
-    "quote-comp": QuoteComp
+    "prog-quote-comp": ProgQuoteComp,
+    "ron-quote-comp": RonQuoteComp
   }
 
 }

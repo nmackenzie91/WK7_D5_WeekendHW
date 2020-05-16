@@ -1,0 +1,27 @@
+<template>
+    <div>
+        <i><h3>"{{ronQuoteDisplay[0]}}"</h3></i>
+        <p>- Ron Swanson</p>
+        <button v-on:click="onNewRonQuoteClick">New Quote</button>
+    </div>
+</template>
+
+<script>
+import {eventBus} from '@/main.js';
+
+
+export default {
+    name: "ron-quote-comp",
+    props: ["ronQuoteDisplay"],
+    methods: {
+        onNewRonQuoteClick: function () {
+            eventBus.$emit('new-ron-quote', this.ronQuoteDisplay)
+        }
+    }
+
+}
+</script>
+
+<style>
+
+</style>
