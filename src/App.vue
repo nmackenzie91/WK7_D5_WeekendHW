@@ -16,6 +16,7 @@ to load more data that is then displayed
 
 <script>
 import QuoteComp from './components/QuoteComp.vue';
+import {eventBus} from '@/main.js';
 
 
 export default {
@@ -26,12 +27,17 @@ export default {
     };
   },
   methods: {
+    getQuote: function() {
+      fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
+      .then(res => res.json())
+      .then(quote => this.quote = quote)
+    }
 
   },
   mounted(){
-    fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
-    .then(res => res.json())
-    .then(quote => this.quote = quote)
+    this.getQuote();
+
+    eventBus.$on("new-quote", () => this.getQuote())
   },
   components: {
     "quote-comp": QuoteComp
