@@ -1,41 +1,41 @@
 # Quotes to Distract a Tired Mind
 
 
-### Brief
+## Brief
 Your task is to create an application that makes a request to an API and displays the data.
 
-### The App
+## The App
 
-A simple app that allows the user to pick from one of four categories of quotes and refresh each one independently. Intended as a pleasant distraction for an overworked brain.
+A simple app that allows the user to pick from one of four categories of quotes and refresh each one independently. Intended as a pleasant distraction for an overworked brain. Note: the Programming category is the only 'serious' one, the other three were intended to make the user laugh.
 
-## Start Screen
+### Start Screen
 
 ![](src/assets/StartPage.png)
 
-## Programming
+### Programming
 
 ![](src/assets/Programming.png)
 
-## Stoic Inspiration
+### Stoic Inspiration
 
 ![](src/assets/Ron.png)
 
-## Absurd
+### Absurd
 
 ![](src/assets/Absurd.png)
 
-## Dumb
+### Dumb
 
 ![](src/assets/Trump.png)
 
 
 
 
-### Running Instructions
+## Running Instructions
 
-# vue_app
+### vue_app
 
-## Project setup
+### Project setup
 ```
 npm install
 ```

@@ -5,8 +5,6 @@
 or manipulating the data on user interaction, or you might make further API requests 
 to load more data that is then displayed
 -->
-
-
 <template>
 
   <div class="body">
@@ -14,13 +12,13 @@ to load more data that is then displayed
 
     <div class="centered">
       <h1>Quotes for a Tired Mind</h1>
-      <p><i>It is a pleasure to be able to quote lines to fit any occasion..."</i> - Abraham Lincoln</p>
-        <div class="select-name">
-          <button v-on:click="handleSelectName('programming')">Programming</button>
-          <button v-on:click="handleSelectName('ron')">Stoic Inspiration</button>
-          <button v-on:click="handleSelectName('kanye')">Absurd</button>
-          <button v-on:click="handleSelectName('trump')">Dumb</button>
-        </div>
+        <p><i>It is a pleasure to be able to quote lines to fit any occasion..."</i> - Abraham Lincoln</p>
+          <div class="select-name">
+            <button v-on:click="handleSelectName('programming')">Programming</button>
+            <button v-on:click="handleSelectName('ron')">Stoic Inspiration</button>
+            <button v-on:click="handleSelectName('kanye')">Absurd</button>
+            <button v-on:click="handleSelectName('trump')">Dumb</button>
+          </div>
     </div>
     <div class="display">
       <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
@@ -37,7 +35,6 @@ import AbsurdQuote from './components/AbsurdQuoteComp.vue';
 import RonQuoteComp from './components/RonQuoteComp.vue';
 import ProgQuoteComp from './components/ProgQuoteComp.vue';
 import {eventBus} from '@/main.js';
-
 
 export default {
   name: 'app',
@@ -79,24 +76,12 @@ export default {
       this.quoteFrom = name
     },
 
-
-
-
-    // getAbsurdQuote2: function() {
-    //   fetch("https://api.kanye.rest/")
-
-    //   .then(res => res.json())
-    //   .then(absurdQuote2 => this.absurdQuote2 = absurdQuote2)
-    // }
-
   },
   mounted(){
     this.getProgQuote();
     this.getRonQuote();
     this.getAbsurdQuote();
     this.getDumbQuote();
-    // this.getAbsurdQuote1();
-    // this.getAbsurdQuote2();
 
     eventBus.$on("new-prog-quote", () => this.getProgQuote());
     eventBus.$on("new-ron-quote", () => this.getRonQuote());
@@ -141,18 +126,14 @@ button {
 
 .centered {
     position: relative;
-    /* top: 100%; */
     left: 0%;
-    /* transform: translate(-50%, -50%); */
     text-align: center;
 }
 
 .display {
-
   text-align: center;
   margin-left: 300px;
   margin-right: 300px;
-
 }
 
 
