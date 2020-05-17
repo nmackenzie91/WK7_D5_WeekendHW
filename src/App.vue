@@ -10,22 +10,24 @@ to load more data that is then displayed
 <template>
   <div>
     <div>
-      <h1>Random Quote</h1>
+      <h1>Distract my Mind with Quotes</h1>
         <div class="select-name">
-          <h3 v-on:click="handleSelectName('programming')">Programming</h3>
-          <h3 v-on:click="handleSelectName('ron')">Ron</h3>
+          <button v-on:click="handleSelectName('programming')">Programming</button>
+          <button v-on:click="handleSelectName('ron')">Stoic Inspiration</button>
+          <button v-on:click="handleSelectName('kanye')">Absurd</button>
         </div>
     </div>
 
-
     <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
-
-
-    <ron-quote-comp :ronQuoteDisplay="ronQuote1" :quoteFrom="quoteFrom"></ron-quote-comp>
+    <ron-quote-comp :ronQuoteDisplay="ronQuote" :quoteFrom="quoteFrom"></ron-quote-comp>
+    <absurd-quote-comp :kanyeQuoteDisplay="absurdQuote" :quoteFrom="quoteFrom"></absurd-quote-comp>
+    <dumb-quote-comp :trumpQuoteDisplay="dumbQuote"></dumb-quote-comp>
   </div>
 </template>
 
 <script>
+import DumbQuote from './components/DumbQuoteComp.vue';
+import AbsurdQuote from './components/AbsurdQuoteComp.vue';
 import RonQuoteComp from './components/RonQuoteComp.vue';
 import ProgQuoteComp from './components/ProgQuoteComp.vue';
 import {eventBus} from '@/main.js';
@@ -36,8 +38,9 @@ export default {
   data() {
     return{
       progQuote: {},
-      ronQuote1: {},
+      ronQuote: {},
       absurdQuote: {},
+      dumbQuote: {},
       quoteFrom: ""
     };
   },
@@ -51,26 +54,27 @@ export default {
     getRonQuote: function() {
       fetch("https://ron-swanson-quotes.herokuapp.com/v2/quotes")
       .then(res => res.json())
-      .then(banana => this.ronQuote1 = banana)
+      .then(banana => this.ronQuote = banana)
     },
 
     getAbsurdQuote: function() {
-      fetch("https://api.tronalddump.io/random/quote")
-  
+      fetch("https://api.kanye.rest")
       .then(res => res.json())
       .then(absurdQuote => this.absurdQuote = absurdQuote)
     },
-    handleSelectName(banana) {
-      this.quoteFrom = banana
-    }
+
+    getDumbQuote: function() {
+      fetch("https://api.tronalddump.io/random/quote")  
+      .then(res => res.json())
+      .then(dumbQuote => this.dumbquote = dumbQuote)
+    },
+
+    handleSelectName(name) {
+      this.quoteFrom = name
+    },
 
 
-    // getAbsurdQuote1: function() {
-    //   fetch("https://api.tronalddump.io/random/quote")
-  
-    //   .then(res => res.json())
-    //   .then(absurdQuote1 => this.absurdQuote1 = absurdQuote1)
-    // },
+
 
     // getAbsurdQuote2: function() {
     //   fetch("https://api.kanye.rest/")
@@ -84,15 +88,19 @@ export default {
     this.getProgQuote();
     this.getRonQuote();
     this.getAbsurdQuote();
+    this.getDumbQuote();
     // this.getAbsurdQuote1();
     // this.getAbsurdQuote2();
 
     eventBus.$on("new-prog-quote", () => this.getProgQuote());
     eventBus.$on("new-ron-quote", () => this.getRonQuote());
+    eventBus.$on("new-kanye-quote", () => this.getAbsurdQuote());
   },
   components: {
     "prog-quote-comp": ProgQuoteComp,
-    "ron-quote-comp": RonQuoteComp
+    "ron-quote-comp": RonQuoteComp,
+    "absurd-quote-comp": AbsurdQuote,
+    "dumb-quote-comp": DumbQuote
   }
 
 }

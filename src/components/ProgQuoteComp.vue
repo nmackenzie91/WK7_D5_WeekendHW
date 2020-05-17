@@ -1,6 +1,6 @@
 <template>
     <div v-if="quoteFrom === 'programming'">
-        <h1>Programming Quotes</h1>
+        <!-- <h1>Programming Quotes</h1> -->
         <i><h3>"{{progQuoteDisplay.en}}"</h3></i>
         <p>- {{progQuoteDisplay.author}}</p>
         <button v-on:click="onNewProgQuoteClick">New Quote</button>
