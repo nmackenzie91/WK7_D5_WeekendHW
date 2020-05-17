@@ -2,7 +2,7 @@
     <div v-if="quoteFrom === 'kanye'">
         <!-- <h1>Kanye Quote</h1> -->
         <i><h3>"{{kanyeQuoteDisplay.quote}}"</h3></i>
-        <p>- Kanye West</p>
+        <h2>- Kanye West</h2>
         <button v-on:click="onNewAbsurdQuoteClick">New Quote</button>
     </div>
 </template>

@@ -8,9 +8,13 @@ to load more data that is then displayed
 
 
 <template>
-  <div>
-    <div>
-      <h1>Distract my Mind with Quotes</h1>
+
+  <div class="body">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost">
+
+    <div class="centered">
+      <h1>Quotes for a Tired Mind</h1>
+      <p><i>It is a pleasure to be able to quote lines to fit any occasion..."</i> - Abraham Lincoln</p>
         <div class="select-name">
           <button v-on:click="handleSelectName('programming')">Programming</button>
           <button v-on:click="handleSelectName('ron')">Stoic Inspiration</button>
@@ -18,11 +22,12 @@ to load more data that is then displayed
           <button v-on:click="handleSelectName('trump')">Dumb</button>
         </div>
     </div>
-
-    <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
-    <ron-quote-comp :ronQuoteDisplay="ronQuote" :quoteFrom="quoteFrom"></ron-quote-comp>
-    <absurd-quote-comp :kanyeQuoteDisplay="absurdQuote" :quoteFrom="quoteFrom"></absurd-quote-comp>
-    <dumb-quote-comp :trumpQuoteDisplay="dumbQuote" :quoteFrom="quoteFrom"></dumb-quote-comp>
+    <div class="display">
+      <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
+      <ron-quote-comp :ronQuoteDisplay="ronQuote" :quoteFrom="quoteFrom"></ron-quote-comp>
+      <absurd-quote-comp :kanyeQuoteDisplay="absurdQuote" :quoteFrom="quoteFrom"></absurd-quote-comp>
+      <dumb-quote-comp :trumpQuoteDisplay="dumbQuote" :quoteFrom="quoteFrom"></dumb-quote-comp>
+    </div>
   </div>
 </template>
 
@@ -109,5 +114,46 @@ export default {
 </script>
 
 <style>
+
+body {
+  font-family: Jost;
+  color: white;
+  text-shadow: 2px 2px 15px rgb(34, 34, 34);
+  justify-content: center;
+  background: rgb(147, 135, 255) url('./assets/IMG_3372.png');
+  background-size: 100%;
+}
+
+button {
+    padding:5px 15px; 
+    margin: 10px;
+    background:rgb(46, 144, 209); 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    font-family: Jost;
+    color: white;
+    text-shadow: 1px 1px 5px grey;
+    font-size:18px;
+    box-shadow: 1px 1px 4px rgb(145, 221, 245);
+}
+
+.centered {
+    position: relative;
+    /* top: 100%; */
+    left: 0%;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+}
+
+.display {
+
+  text-align: center;
+  margin-left: 300px;
+  margin-right: 300px;
+
+}
+
 
 </style>

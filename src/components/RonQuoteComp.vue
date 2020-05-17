@@ -2,7 +2,7 @@
     <div v-if="quoteFrom === 'ron'">
         <!-- <h1>Ron Quote</h1> -->
         <i><h3>"{{ronQuoteDisplay[0]}}"</h3></i>
-        <p>- Ron Swanson</p>
+        <h2>- Ron Swanson</h2>
         <button v-on:click="onNewRonQuoteClick">New Quote</button>
     </div>
 </template>

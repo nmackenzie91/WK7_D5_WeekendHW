@@ -2,7 +2,7 @@
     <div v-if="quoteFrom === 'trump'">
         <i><h3>"{{trumpQuoteDisplay.value}}"</h3></i>
         <!-- <p>- {{trumpQuoteDisplay._embedded.author[0].name}}</p> -->
-        <p>- Donald Trump</p>
+        <h2>- Donald Trump</h2>
         <button v-on:click="onNewDumbQuoteClick">New Quote</button>
 
     </div>
