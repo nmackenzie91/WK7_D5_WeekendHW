@@ -15,13 +15,14 @@ to load more data that is then displayed
           <button v-on:click="handleSelectName('programming')">Programming</button>
           <button v-on:click="handleSelectName('ron')">Stoic Inspiration</button>
           <button v-on:click="handleSelectName('kanye')">Absurd</button>
+          <button v-on:click="handleSelectName('trump')">Dumb</button>
         </div>
     </div>
 
     <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
     <ron-quote-comp :ronQuoteDisplay="ronQuote" :quoteFrom="quoteFrom"></ron-quote-comp>
     <absurd-quote-comp :kanyeQuoteDisplay="absurdQuote" :quoteFrom="quoteFrom"></absurd-quote-comp>
-    <dumb-quote-comp :trumpQuoteDisplay="dumbQuote"></dumb-quote-comp>
+    <dumb-quote-comp :trumpQuoteDisplay="dumbQuote" :quoteFrom="quoteFrom"></dumb-quote-comp>
   </div>
 </template>
 
@@ -66,7 +67,7 @@ export default {
     getDumbQuote: function() {
       fetch("https://api.tronalddump.io/random/quote")  
       .then(res => res.json())
-      .then(dumbQuote => this.dumbquote = dumbQuote)
+      .then(dumbQuote => this.dumbQuote = dumbQuote)
     },
 
     handleSelectName(name) {
@@ -95,6 +96,7 @@ export default {
     eventBus.$on("new-prog-quote", () => this.getProgQuote());
     eventBus.$on("new-ron-quote", () => this.getRonQuote());
     eventBus.$on("new-kanye-quote", () => this.getAbsurdQuote());
+    eventBus.$on("new-trump-quote", () => this.getDumbQuote());
   },
   components: {
     "prog-quote-comp": ProgQuoteComp,
