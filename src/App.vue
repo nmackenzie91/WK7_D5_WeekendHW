@@ -9,11 +9,19 @@ to load more data that is then displayed
 
 <template>
   <div>
-    <h1>Programming Quotes</h1>
-    <prog-quote-comp :progQuoteDisplay="progQuote"></prog-quote-comp>
-    
-    <h1>Another Quote</h1>
-    <ron-quote-comp :ronQuoteDisplay="ronQuote"></ron-quote-comp>
+    <div>
+      <h1>Random Quote</h1>
+        <div class="select-name">
+          <h3 v-on:click="handleSelectName('programming')">Programming</h3>
+          <h3 v-on:click="handleSelectName('ron')">Ron</h3>
+        </div>
+    </div>
+
+
+    <prog-quote-comp :progQuoteDisplay="progQuote" :quoteFrom="quoteFrom"></prog-quote-comp>
+
+
+    <ron-quote-comp :ronQuoteDisplay="ronQuote1" :quoteFrom="quoteFrom"></ron-quote-comp>
   </div>
 </template>
 
@@ -28,7 +36,9 @@ export default {
   data() {
     return{
       progQuote: {},
-      ronQuote: {}
+      ronQuote1: {},
+      absurdQuote: {},
+      quoteFrom: ""
     };
   },
   methods: {
@@ -41,13 +51,41 @@ export default {
     getRonQuote: function() {
       fetch("https://ron-swanson-quotes.herokuapp.com/v2/quotes")
       .then(res => res.json())
-      .then(ronQuote => this.ronQuote = ronQuote)
+      .then(banana => this.ronQuote1 = banana)
     },
+
+    getAbsurdQuote: function() {
+      fetch("https://api.tronalddump.io/random/quote")
+  
+      .then(res => res.json())
+      .then(absurdQuote => this.absurdQuote = absurdQuote)
+    },
+    handleSelectName(banana) {
+      this.quoteFrom = banana
+    }
+
+
+    // getAbsurdQuote1: function() {
+    //   fetch("https://api.tronalddump.io/random/quote")
+  
+    //   .then(res => res.json())
+    //   .then(absurdQuote1 => this.absurdQuote1 = absurdQuote1)
+    // },
+
+    // getAbsurdQuote2: function() {
+    //   fetch("https://api.kanye.rest/")
+
+    //   .then(res => res.json())
+    //   .then(absurdQuote2 => this.absurdQuote2 = absurdQuote2)
+    // }
 
   },
   mounted(){
     this.getProgQuote();
     this.getRonQuote();
+    this.getAbsurdQuote();
+    // this.getAbsurdQuote1();
+    // this.getAbsurdQuote2();
 
     eventBus.$on("new-prog-quote", () => this.getProgQuote());
     eventBus.$on("new-ron-quote", () => this.getRonQuote());
